@@ -9,6 +9,8 @@ namespace MidtermHangManProject
     {
         private static string WordFile = "../../../Words.txt";
         private static string UsersFile = "../../../UserPlayers.txt";
+        //private static string EasyWordFile = "../../../EasyWords.txt";
+        //private static string HardWordFile = "../../../HardWords.txt";
         public List<string> Words { get; set; }
         public List<UserPlayer> Users { get; set; }
         //public List<string> EasyWords {get;set;}
@@ -37,7 +39,7 @@ namespace MidtermHangManProject
             while (line != null)
             {
                 formattedLine = line.Split('|');
-                Users.Add(new UserPlayer(formattedLine[0], int.Parse(formattedLine[1]), int.Parse(formattedLine[2])));
+                CheckUser(new UserPlayer(formattedLine[0], int.Parse(formattedLine[1]), int.Parse(formattedLine[2])));
                 line = reader.ReadLine();
             }
             reader.Close();
@@ -57,5 +59,18 @@ namespace MidtermHangManProject
         //{
 
         //}
+        public void CheckUser(UserPlayer newPlayer)
+        {
+            foreach(UserPlayer existing in Users)
+            {
+                if(existing.Name == newPlayer.Name)
+                {
+                    existing.Wins = existing.Wins + (newPlayer.Wins - existing.Wins);
+                    existing.Losses = existing.Losses + (newPlayer.Losses - existing.Losses);
+                    return;
+                }
+            }
+            Users.Add(newPlayer);
+        }
     }
 }
