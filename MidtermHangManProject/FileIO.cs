@@ -14,21 +14,48 @@ namespace MidtermHangManProject
         //public List<string> EasyWords {get;set;}
         //public List<string> HardWords {get;set;}
 
-        public static void WriteUsers()
-        {
 
-        }
-        public static void ReadUsers()
+        public FileIO()
         {
-
+            Words = new List<string>();
+            Users = new List<UserPlayer>();
         }
-        public static void ReadWords()
+        public void WriteUsers()
         {
-
+            StreamWriter writer = new StreamWriter(UsersFile);
+            foreach (UserPlayer player in Users)
+            {
+                writer.WriteLine($"{player.Name}|{player.Wins}|{player.Losses}");
+            }
+            writer.Close();
         }
-        public static void WriteWords()
+        public void ReadUsers()
         {
-
+            StreamReader reader = new StreamReader(UsersFile);
+            string line = reader.ReadLine();
+            string[] formattedLine = new string[3];
+            while (line != null)
+            {
+                formattedLine = line.Split('|');
+                Users.Add(new UserPlayer(formattedLine[0], int.Parse(formattedLine[1]), int.Parse(formattedLine[2])));
+                line = reader.ReadLine();
+            }
+            reader.Close();
         }
+        public void ReadWords()
+        {
+            StreamReader reader = new StreamReader(WordFile);
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                Words.Add(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+        }
+        //public void WriteWords()
+        //{
+
+        //}
     }
 }

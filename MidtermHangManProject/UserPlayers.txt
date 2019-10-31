@@ -1,1 +1,7 @@
-﻿
+Grant Chirpus|9001|0
+Donald Trump|1337|79
+Barack Obama|972|100
+Ryne|1243|301
+Link|0|0
+Zelda|14582|6432
+Gannondorf|0|131313

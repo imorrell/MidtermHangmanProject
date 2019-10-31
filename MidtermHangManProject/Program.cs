@@ -6,7 +6,20 @@ namespace MidtermHangManProject
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            FileIO test = new FileIO();
+            test.ReadWords();
+            foreach(string word in test.Words)
+            {
+                Console.WriteLine(word);
+            }
+            test.ReadUsers();
+            foreach (UserPlayer userplayer in test.Users)
+            {
+                Console.WriteLine($"{userplayer.Name} { userplayer.Wins} {userplayer.Losses}");
+            }
+            UserPlayer newUser = new UserPlayer("Gannondorf", 0, 131313);
+            test.Users.Add(newUser);
+            test.WriteUsers();
         }
     }
 }
