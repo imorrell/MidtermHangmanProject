@@ -11,14 +11,37 @@ namespace MidtermHangManProject
         {
             //create and intialize variables
             bool ok = true;
+            string userName;
+            //char [] word = new char[];
+            List<string> userEntries = new List<string>();
 
-            //UserPlayer user = new UserPlayer();
+            
+
+            int numberOfGuesses = 7;
+            string enterLetter;
+            int wins = 0;
+            int loses = 0;
+
+            UserPlayer user = new UserPlayer();
 
             //welcome the user to the program
             Console.WriteLine("Welcome to Hangman! Get ready to take this L!\n");
 
             //Ask the user to enter their name
-            Console.WriteLine("Please enter your name\n");
+            userName = Validator.GetUserInputTwo("Please enter user name\n");
+
+            //add the username to the user object
+            user.Name = userName;
+
+            //use while loop to process user input
+            while (ok && numberOfGuesses != 0)
+            {
+                //set the name of the word from the file
+
+
+
+
+            }
 		//creating a method to print out a specific sets of CW's based on the number of guesses they have left.
 		//public static void CharacterArtCountdown()
 		//	{ foreach (number X in guesses)
@@ -116,15 +139,15 @@ namespace MidtermHangManProject
 
 
         }
-		public static void 
-		public static void CheckLetter()
-		{
-			foreach (char[i] in FileIO.Words(word))
-			{
-				if([i] == userGuess)
-			}
-			UserPlayer.Guesses--;
-		}
+		//public static void 
+		//public static void CheckLetter()
+		//{
+			//foreach (char[i] in FileIO.Words(word))
+			//{
+				//if([i] == userGuess)
+			//}
+			//UserPlayer.Guesses--;
+		//}
 
     }
 }
