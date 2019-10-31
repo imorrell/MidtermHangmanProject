@@ -18,7 +18,7 @@ namespace MidtermHangManProject
                 Console.WriteLine($"{userplayer.Name} { userplayer.Wins} {userplayer.Losses}");
             }
             UserPlayer newUser = new UserPlayer("Gannondorf", 0, 131313);
-            test.Users.Add(newUser);
+            test.CheckUser(newUser);
             test.WriteUsers();
         }
     }
