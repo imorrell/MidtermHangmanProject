@@ -12,17 +12,30 @@ namespace MidtermHangManProject
             //create and intialize variables
             bool ok = true;
             string userName;
+            string word;
             //char [] word = new char[];
             List<string> userEntries = new List<string>();
-
-            
-
             int numberOfGuesses = 7;
             string enterLetter;
             int wins = 0;
             int loses = 0;
+            Random rnd = new Random();
+            
 
+            //create user player object
             UserPlayer user = new UserPlayer();
+
+            //pull in list of words from FileIO class
+            FileIO file = new FileIO();
+
+            //read the word file
+            file.ReadWords();
+
+            //initialize array that will hold all of the words read from the file
+            List<string> hangManWords = file.Words;
+
+            //create a random int variable that will be used to draw words from hangManWords list
+            int randomWord;
 
             //welcome the user to the program
             Console.WriteLine("Welcome to Hangman! Get ready to take this L!\n");
@@ -36,10 +49,13 @@ namespace MidtermHangManProject
             //use while loop to process user input
             while (ok && numberOfGuesses != 0)
             {
-                //set the name of the word from the file
+                //create a random int variable that will be used to draw words from hangManWords list
+                randomWord = rnd.Next(1, hangManWords.Count);
 
+                //set the word that the user will guess
+                word = hangManWords[randomWord];
 
-
+                Console.WriteLine(word);
 
             }
 		//creating a method to print out a specific sets of CW's based on the number of guesses they have left.

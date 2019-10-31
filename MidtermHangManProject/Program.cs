@@ -6,6 +6,7 @@ namespace MidtermHangManProject
     {
         static void Main(string[] args)
         {
+            /*
             FileIO test = new FileIO();
             test.ReadWords();
             foreach(string word in test.Words)
@@ -20,6 +21,9 @@ namespace MidtermHangManProject
             UserPlayer newUser = new UserPlayer("Gannondorf", 0, 131313);
             test.Users.Add(newUser);
             test.WriteUsers();
+            */
+
+            PlayGame.PlayHangMan();
         }
     }
 }
