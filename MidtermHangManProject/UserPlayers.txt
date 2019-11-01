@@ -2,7 +2,13 @@ Grant Chirpus|9001|0
 Donald Trump|1337|79
 Barack Obama|972|100
 Ryne|1243|301
-Link|0|0
+Link|4|0
 Zelda|14582|6432
 Gannondorf|0|131313
-Sora|682|303
+Bob|9|4
+jim|3|0
+Rick|3|0
+Andy|7|3
+Phil|3|0
+Anna43eu9034r9|3|0
+Ivo|5|0

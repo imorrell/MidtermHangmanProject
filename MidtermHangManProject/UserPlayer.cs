@@ -18,6 +18,18 @@ namespace MidtermHangManProject
 			Wins = wins;
 			Losses = losses;
 		}
+
+        public double WinLossPercentage()
+        {
+            try
+            {
+                return Wins / (Wins + Losses);
+            }
+            catch (DivideByZeroException)
+            {
+                return 0;
+            }
+        }
 		
 	}
 }

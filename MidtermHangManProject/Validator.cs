@@ -35,6 +35,11 @@ namespace MidtermHangManProject
             Console.WriteLine();
 
             //check to see if input is alphabet only
+            if (input.Length > 1)
+            {
+                Console.WriteLine("Can only enter one letter at a time! Try again");
+                return LetterInputOnly(message);
+            }
 
             if (Regex.IsMatch(input, @"^[a-zA-Z\s]+$"))
             {

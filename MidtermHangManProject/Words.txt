@@ -1,4 +1,4 @@
-﻿CSharp
+CSharp
 Shadowbringers
 Stormblood
 Heavensward
@@ -12,3 +12,4 @@ Link
 Detroit
 Grand Rapids
 Michigan
+Steve is Still Awesome

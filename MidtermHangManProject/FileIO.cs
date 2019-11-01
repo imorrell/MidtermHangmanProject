@@ -9,11 +9,11 @@ namespace MidtermHangManProject
     {
         private static string WordFile = "../../../Words.txt";
         private static string UsersFile = "../../../UserPlayers.txt";
-        //private static string EasyWordFile = "../../../EasyWords.txt";
+        private static string EasyWordFile = "../../../EasyWords.txt";
         //private static string HardWordFile = "../../../HardWords.txt";
         public List<string> Words { get; set; }
         public List<UserPlayer> Users { get; set; }
-        //public List<string> EasyWords {get;set;}
+        public List<string> EasyWords {get;set;}
         //public List<string> HardWords {get;set;}
 
 
@@ -21,6 +21,7 @@ namespace MidtermHangManProject
         {
             Words = new List<string>();
             Users = new List<UserPlayer>();
+            EasyWords = new List<string>();
             ReadUsers();
             ReadWords();
         }
@@ -56,19 +57,33 @@ namespace MidtermHangManProject
                 line = reader.ReadLine();
             }
             reader.Close();
+            line = "";
+            reader = new StreamReader(EasyWordFile);
+            line = reader.ReadLine();
+            while (line != null)
+            {
+                EasyWords.Add(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
         }
-        //public void WriteWords()
-        //{
-
-        //}
-        private void CheckUser(UserPlayer newPlayer)
+        public void WriteWords()
+        {
+            StreamWriter writer = new StreamWriter(WordFile);
+            foreach (string word in Words)
+            {
+                writer.WriteLine($"{word}");
+            }
+            writer.Close();
+        }
+        public void CheckUser(UserPlayer newPlayer)
         {
             foreach(UserPlayer existing in Users)
             {
                 if(existing.Name == newPlayer.Name)
                 {
-                    existing.Wins = existing.Wins + (newPlayer.Wins - existing.Wins);
-                    existing.Losses = existing.Losses + (newPlayer.Losses - existing.Losses);
+                    existing.Wins = existing.Wins + newPlayer.Wins;
+                    existing.Losses = existing.Losses + newPlayer.Losses;
                     return;
                 }
             }
