@@ -24,7 +24,7 @@ namespace MidtermHangManProject
             }
         }
 
-        public static string UserInput(string message)
+        public static string LetterInputOnly(string message)
         {
             string input;
 
@@ -36,7 +36,7 @@ namespace MidtermHangManProject
 
             //check to see if input is alphabet only
 
-            if (Regex.IsMatch(input, @"^[a-zA-Z0-9\s]+$"))
+            if (Regex.IsMatch(input, @"^[a-zA-Z\s]+$"))
             {
                 return input;
             }
@@ -44,7 +44,7 @@ namespace MidtermHangManProject
             {
                 //input is not all alphabet. Return message and recall method
                 Console.WriteLine("Wrong input! must contain letters only. \n");
-                return UserInput(message);
+                return LetterInputOnly(message);
             }
         }
 

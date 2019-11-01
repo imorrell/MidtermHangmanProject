@@ -15,12 +15,14 @@ namespace MidtermHangManProject
             string word;
             //char [] word = new char[];
             List<string> userEntries = new List<string>();
-            int numberOfGuesses = 7;
+            List<string> letterGuessed = new List<string>();
+            int incorrectGuesses = 7;
             string enterLetter;
             int wins = 0;
             int loses = 0;
+            bool letterFound = false;
             Random rnd = new Random();
-            
+            int randomWord;
 
             //create user player object
             UserPlayer user = new UserPlayer();
@@ -34,9 +36,6 @@ namespace MidtermHangManProject
             //initialize array that will hold all of the words read from the file
             List<string> hangManWords = file.Words;
 
-            //create a random int variable that will be used to draw words from hangManWords list
-            int randomWord;
-
             //welcome the user to the program
             Console.WriteLine("Welcome to Hangman! Get ready to take this L!\n");
 
@@ -47,15 +46,68 @@ namespace MidtermHangManProject
             user.Name = userName;
 
             //use while loop to process user input
-            while (ok && numberOfGuesses != 0)
+            while (ok)
             {
                 //create a random int variable that will be used to draw words from hangManWords list
-                randomWord = rnd.Next(1, hangManWords.Count);
+                randomWord = rnd.Next(0, hangManWords.Count);
 
                 //set the word that the user will guess
                 word = hangManWords[randomWord];
 
                 Console.WriteLine(word);
+
+                //generate dashes
+                userEntries = UserInput(word);
+                Console.WriteLine();
+
+                while (incorrectGuesses != 0 && userEntries.ToString() != word)
+                {
+                    ShowInput(userEntries);
+
+                    //ask the user for an entry
+                    enterLetter = Validator.LetterInputOnly("Enter a letter\n");
+
+                    //check to see if the letter has already been guessed
+                    foreach (String item in letterGuessed)
+                    {
+                        //check to see if the letter has already been guessed
+                        if (item == enterLetter)
+                        {
+                            //this letter has already been guessed, tell the user. 
+                            Console.WriteLine("This letter has already been guessed. Please enter different letter. \n")
+                        }
+                        else
+                        //letter has not been guessed
+                        //check to see if the letter is equivalent to letter or letters in word
+                        for (int i = 0; i < word.Length; i++)
+                        {
+                            if (char.Parse(enterLetter) == word[i])
+                            {
+                                //populate underscore from user entries with letter
+                                letterFound = true;
+                                userEntries.RemoveAt(i);
+                                userEntries.Insert(i, enterLetter);
+                            }
+
+                        }
+                    }
+
+                    //if the letter is not found, decrement the number of guesses
+                    if (letterFound == false)
+                    {
+                        incorrectGuesses--;
+                    }
+
+                    //reset the letter found bool for next loop interation
+                    letterFound = false;
+                }
+
+
+                //populate empty list with underscores
+                foreach(char c in word)
+                {
+                    
+                }
 
             }
 		//creating a method to print out a specific sets of CW's based on the number of guesses they have left.
@@ -165,5 +217,27 @@ namespace MidtermHangManProject
 			//UserPlayer.Guesses--;
 		//}
 
+        public static List<string> UserInput(string word)
+        {
+            List<string> words = new List<string>();
+
+            for (int i = 0; i < word.Length; i++)
+            {
+                words.Add("_ ");
+            }
+           
+
+            return words;
+
+        }
+
+        public static void ShowInput(List <string> words)
+        {
+            foreach (string letter in words)
+            {
+                Console.Write(letter);
+            }
+            Console.WriteLine();
+        }
     }
 }
