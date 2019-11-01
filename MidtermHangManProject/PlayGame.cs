@@ -135,6 +135,7 @@ namespace MidtermHangManProject
                                             //this letter has already been guessed, tell the user. 
                                             Console.WriteLine("This letter has already been guessed. Please enter different letter. \n");
 
+<<<<<<< HEAD
                                             incorrectGuesses--;
                                             CharacterArtCountdown(incorrectGuesses);
                                         }
@@ -177,6 +178,23 @@ namespace MidtermHangManProject
                             Console.WriteLine();
                             List<UserPlayer> temp = file.Users.OrderBy(x => x.Wins).ToList();
                             for (int x = temp.Count - 1; x >= 0; x--)
+=======
+                    //check to see if the letter has already been guessed
+                    foreach (String item in letterGuessed)
+                    {
+                        //check to see if the letter has already been guessed
+                        if (item == enterLetter)
+                        {
+                            //this letter has already been guessed, tell the user. 
+                            Console.WriteLine("This letter has already been guessed. Please enter different letter. \n");
+                        }
+                        else
+                        //letter has not been guessed
+                        //check to see if the letter is equivalent to letter or letters in word
+                        for (int i = 0; i < word.Length; i++)
+                        {
+                            if (char.Parse(enterLetter) == word[i])
+>>>>>>> a575d6816e789bc0bd8b7de81a5488bb701e38cb
                             {
                                 Console.WriteLine($"{temp[x].Name}  {temp[x].Wins}");
                             }
