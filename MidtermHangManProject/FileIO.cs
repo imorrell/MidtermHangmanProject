@@ -21,6 +21,8 @@ namespace MidtermHangManProject
         {
             Words = new List<string>();
             Users = new List<UserPlayer>();
+            ReadUsers();
+            ReadWords();
         }
         public void WriteUsers()
         {
@@ -31,7 +33,7 @@ namespace MidtermHangManProject
             }
             writer.Close();
         }
-        public void ReadUsers()
+        private void ReadUsers()
         {
             StreamReader reader = new StreamReader(UsersFile);
             string line = reader.ReadLine();
@@ -44,7 +46,7 @@ namespace MidtermHangManProject
             }
             reader.Close();
         }
-        public void ReadWords()
+        private void ReadWords()
         {
             StreamReader reader = new StreamReader(WordFile);
             string line = reader.ReadLine();
@@ -59,7 +61,7 @@ namespace MidtermHangManProject
         //{
 
         //}
-        public void CheckUser(UserPlayer newPlayer)
+        private void CheckUser(UserPlayer newPlayer)
         {
             foreach(UserPlayer existing in Users)
             {
