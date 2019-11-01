@@ -74,7 +74,7 @@ namespace MidtermHangManProject
                         if (item == enterLetter)
                         {
                             //this letter has already been guessed, tell the user. 
-                            Console.WriteLine("This letter has already been guessed. Please enter different letter. \n")
+                            Console.WriteLine("This letter has already been guessed. Please enter different letter. \n");
                         }
                         else
                         //letter has not been guessed
