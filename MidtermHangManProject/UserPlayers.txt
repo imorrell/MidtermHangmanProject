@@ -5,11 +5,13 @@ Ryne|1243|301
 Link|4|0
 Zelda|14582|6432
 Gannondorf|0|131313
-Bob|11|8
+Bob|11|9
 jim|3|0
 Rick|3|0
 Andy|7|3
 Phil|3|0
 Anna43eu9034r9|3|0
-Ivo|5|0
+Ivo|5|1
 ho|0|1
+bob|0|1
+ivo|0|1
