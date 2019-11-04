@@ -11,10 +11,14 @@ namespace MidtermHangManProject
         private static string UsersFile = "../../../UserPlayers.txt";
         private static string EasyWordFile = "../../../EasyWords.txt";
         //private static string HardWordFile = "../../../HardWords.txt";
+        private static string PeopleFile = "../../../PeopleCharacters.txt";
+        private static string PlacesFile = "../../../Places.txt";
         public List<string> Words { get; set; }
         public List<UserPlayer> Users { get; set; }
         public List<string> EasyWords {get;set;}
         //public List<string> HardWords {get;set;}
+        public List<string> PeopleWords { get; set; }
+        public List<string> PlaceWords { get; set; }
 
 
         public FileIO()
@@ -22,6 +26,8 @@ namespace MidtermHangManProject
             Words = new List<string>();
             Users = new List<UserPlayer>();
             EasyWords = new List<string>();
+            PeopleWords = new List<string>();
+            PlaceWords = new List<string>();
             ReadUsers();
             ReadWords();
         }
@@ -57,12 +63,33 @@ namespace MidtermHangManProject
                 line = reader.ReadLine();
             }
             reader.Close();
+            
             line = "";
             reader = new StreamReader(EasyWordFile);
             line = reader.ReadLine();
             while (line != null)
             {
                 EasyWords.Add(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+            
+            line = "";
+            reader = new StreamReader(PeopleFile);
+            line = reader.ReadLine();
+            while (line != null)
+            {
+                PeopleWords.Add(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+
+            line = "";
+            reader = new StreamReader(PlacesFile);
+            line = reader.ReadLine();
+            while (line != null)
+            {
+                PlaceWords.Add(line);
                 line = reader.ReadLine();
             }
             reader.Close();

@@ -7,9 +7,48 @@ Final Fantasy
 Modern Warfare
 Grand Circus
 Halo
-Zelda
-Link
-Detroit
-Grand Rapids
-Michigan
 Steve is Still Awesome
+Discord
+How Much Wood Would a Woodchuck Chuck if a Woodchuck Could Chuck Wood
+Unstoppable Force
+Immovable Object
+Red Wings
+Validator
+Pistons
+Lions
+Tigers
+Call of Duty
+Battlefield
+Youtube
+Wikipedia
+Fire Emblem
+Nintendo
+Square Enix
+Microsoft
+Java
+Sony
+CD Projekt Red
+Visual Studio
+The Internet
+Mortal Kombat
+The Witcher
+Pizza Hut
+Fear the Reaper
+Hangman
+Midterm
+Warhammer
+Rock Paper Scissors
+The Lord of the Rings
+Steam
+A Song of Ice and Fire
+Polymorphism
+Inheritance
+Abstraction
+Encapsulation
+Interface
+Abstract Class
+FileIO
+Pillow
+Laptop
+Computer
+Joe Blow

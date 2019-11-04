@@ -79,7 +79,6 @@ namespace MidtermHangManProject
                                 //generate dashes
                                 userEntries = UserInput(word);
 
-
                                 Console.WriteLine();
 
                                 while (incorrectGuesses != 0 && ConvertStringList(userEntries) != word.ToLower())
@@ -103,7 +102,6 @@ namespace MidtermHangManProject
                                         {
                                             unguessedLetters.RemoveAt(x);
                                             guessedLettersList.Add(enterLetter);
-
                                             for (int i = 0; i < word.Length; i++)
                                             {
                                                 if (enterLetter == word[i].ToString().ToLower())
@@ -127,13 +125,12 @@ namespace MidtermHangManProject
                                             incorrectGuesses--;
                                             CharacterArtCountdown(incorrectGuesses);
                                         }
-
                                     }
 
                                     //if the letter is not found, decrement the number of guesses
                                     if (letterFound == false)
                                     {
-                                        Console.WriteLine("Letter not found. You suck\n");
+                                        Console.WriteLine("Letter not found. You suck.\n");
                                         incorrectGuesses--;
                                         CharacterArtCountdown(incorrectGuesses);
                                     }
@@ -175,7 +172,6 @@ namespace MidtermHangManProject
                             inMenu = false;
                             break;
                         case ("4"):
-
                             Environment.Exit(0);
                             break; //<----THIS SHOULDN'T BE NEEEDED!!!! RAAAAAAAAAAAAAAGE!!!!!!!!!\
                         case ("14"):
