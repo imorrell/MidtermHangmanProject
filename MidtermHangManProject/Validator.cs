@@ -77,7 +77,7 @@ namespace MidtermHangManProject
             return result;
         }        
 
-        public static string GetChoiceString(string s1, string s2, string message)
+        public static string GetChoiceString(string s1, string s2, string s3, string s4, string s5, string s6, string message)
         {
             //create String variable
             string choice = "";
@@ -99,10 +99,11 @@ namespace MidtermHangManProject
                 {
                     Console.WriteLine("Error! This entry is required. Try again");
                 }
-                else if (!choice.Equals(s1, StringComparison.OrdinalIgnoreCase) && !choice.Equals(s2, StringComparison.OrdinalIgnoreCase))
+                else if (!choice.Equals(s1, StringComparison.OrdinalIgnoreCase) && !choice.Equals(s2, StringComparison.OrdinalIgnoreCase) && !choice.Equals(s3, StringComparison.OrdinalIgnoreCase)
+                    && !choice.Equals(s4, StringComparison.OrdinalIgnoreCase) && !choice.Equals(s5, StringComparison.OrdinalIgnoreCase) && !choice.Equals(s6, StringComparison.OrdinalIgnoreCase))
                 {
                     Console.WriteLine("Error! Entry must be"
-                            + s1 + " or " + s2 + "." + " Try again.");
+                            + s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5 + " or " +s6 + ". Try again.");
                 }
                 else
                 {

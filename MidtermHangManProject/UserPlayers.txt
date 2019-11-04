@@ -5,7 +5,7 @@ Ryne|1243|301
 Link|4|0
 Zelda|14582|6432
 Gannondorf|0|131313
-Bob|11|9
+Bob|17|10
 jim|3|0
 Rick|3|0
 Andy|7|3

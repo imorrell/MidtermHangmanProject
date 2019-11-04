@@ -13,13 +13,14 @@ namespace MidtermHangManProject
         //private static string HardWordFile = "../../../HardWords.txt";
         private static string PeopleFile = "../../../PeopleCharacters.txt";
         private static string PlacesFile = "../../../Places.txt";
+        private static string ThingsFile = "../../../ThingsWords.txt";
         public List<string> Words { get; set; }
         public List<UserPlayer> Users { get; set; }
         public List<string> EasyWords {get;set;}
         //public List<string> HardWords {get;set;}
         public List<string> PeopleWords { get; set; }
         public List<string> PlaceWords { get; set; }
-
+        public List<string> ThingWords { get; set; }
 
         public FileIO()
         {
@@ -28,6 +29,7 @@ namespace MidtermHangManProject
             EasyWords = new List<string>();
             PeopleWords = new List<string>();
             PlaceWords = new List<string>();
+            ThingWords = new List<string>();
             ReadUsers();
             ReadWords();
         }
@@ -90,6 +92,16 @@ namespace MidtermHangManProject
             while (line != null)
             {
                 PlaceWords.Add(line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+
+            line = "";
+            reader = new StreamReader(ThingsFile);
+            line = reader.ReadLine();
+            while (line != null)
+            {
+                ThingWords.Add(line);
                 line = reader.ReadLine();
             }
             reader.Close();

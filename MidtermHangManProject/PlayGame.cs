@@ -258,14 +258,31 @@ namespace MidtermHangManProject
         }
         public static List<string> WordDifficultySelector()
         {
-           string wordDifficulty = Validator.GetChoiceString("Common", "Uncommon", "Would you prefer a Common word or a Uncommon Word?\n");
+           string wordDifficulty = Validator.GetChoiceString("Common", "Other", "Places", "Things", "Person", "Info", "Would you prefer a Common word, a Person, Places, Things or Other?\nEnter \"info\" for information on each Category.");
             if (wordDifficulty.Equals("Common",StringComparison.OrdinalIgnoreCase))
             {
                return file.EasyWords;
             }
-            else if (wordDifficulty.Equals("Uncommon", StringComparison.OrdinalIgnoreCase))
+            else if (wordDifficulty.Equals("Other", StringComparison.OrdinalIgnoreCase))
             {
                 return file.Words;
+            }
+            else if (wordDifficulty.Equals("Places", StringComparison.OrdinalIgnoreCase))
+            {
+                return file.PlaceWords;
+            }
+            else if (wordDifficulty.Equals("Things", StringComparison.OrdinalIgnoreCase))
+            {
+                return file.ThingWords;
+            }
+            else if (wordDifficulty.Equals("Person", StringComparison.OrdinalIgnoreCase))
+            {
+                return file.PeopleWords;
+            }
+            else if (wordDifficulty.Equals("Info", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("Common: Common, everyday words.\nOther: Who knows what you'll get?\nPlaces: Actual places (cities, continents, nations, etc.).\nThings: Everyday objects you see around life.\nPerson: People, real, maybe real, not real.\n");
+                return WordDifficultySelector();
             }
             else 
             {
