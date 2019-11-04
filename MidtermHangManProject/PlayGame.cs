@@ -12,22 +12,6 @@ namespace MidtermHangManProject
         //The PlayHangMan method controls all the gameplay for hangman
         public static void PlayHangMan()
         {
-            //create and intialize variables
-            List<string> lostStatements = new List<string>
-            {
-                "Sorry, your just a loser!",
-                "Garbage!!!!!!!",
-                "Daaaammnnn you suck!!",
-                "LOL U SUCK!",
-                "That was a really good try...... SIKE!",
-                "Gimme my money!",
-                "Your mother should of thrown you away and kept the stork lol!",
-                "Don't feel bad, there are many people who have no talent!",
-                "Brains are not everything. In fact, in your case they're nothing!",
-                "Did your parents ever ask you to run away from home?",
-                "Don't think, it might sprain your brain!"
-            };
-
             file = new FileIO();
             bool ok = true;
             string userName;
@@ -49,7 +33,7 @@ namespace MidtermHangManProject
             while (playing)
             {
                 //Ask the user to enter their name
-                userName = Validator.GetUserInputTwo("Please enter user name\n");
+                userName = Validator.GetUserInputTwo("Please enter a memorable username\n");
 
                 PlayerRecognition(userName);
 
@@ -86,10 +70,7 @@ namespace MidtermHangManProject
                                 {
                                     ShowInput(userEntries);
                                     Console.Write("Letters Entered: ");
-                                    foreach (string letter in guessedLettersList)
-                                    {
-                                        Console.Write($"{letter} ");
-                                    }
+                                    DisplayListLetters(guessedLettersList);
                                     Console.WriteLine();
 
                                     //ask the user for an entry
@@ -142,7 +123,7 @@ namespace MidtermHangManProject
                                 }
                                 if (incorrectGuesses == 0)
                                 {
-                                    Console.WriteLine(lostStatements[rnd.Next(0, lostStatements.Count)] + $" Your word was \"{word}\".");
+                                    InsultGenerator(word);
                                     losses++;
                                 }
                                 else if (ConvertStringList(userEntries) == word.ToLower())
@@ -164,11 +145,7 @@ namespace MidtermHangManProject
                             break;
                         case ("2"):
                             Console.WriteLine();
-                            List<UserPlayer> temp = file.Users.OrderBy(x => x.Wins).ToList();
-                            for (int x = temp.Count - 1; x >= 0; x--)
-                            {
-                                Console.WriteLine($"{temp[x].Name}  {temp[x].Wins}");
-                            }
+                            DisplayHighScores();
                             Console.WriteLine();
                             break;
                         case ("3"):
@@ -200,53 +177,61 @@ namespace MidtermHangManProject
             {
                 if (X == 6)
                 {
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("    (XXX)  ");
+                    Console.WriteLine("   ____    ");
+                    Console.WriteLine("   |  0    ");
+                    Console.WriteLine("   |       ");
+                    Console.WriteLine("   |       ");
+                    Console.WriteLine("___|_______");
                 }
                 else if (X == 5)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("    (XXX)  ");
-                }
+                Console.WriteLine("   ____    ");
+                Console.WriteLine("   |  0    ");
+                Console.WriteLine("   |  |    ");
+                Console.WriteLine("   |       ");
+                Console.WriteLine("___|_______");
+            }
                 else if (X == 4)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     |X|    ");
-                    Console.WriteLine("    (XXX)  ");
-                }
+                Console.WriteLine("   ____    ");
+                Console.WriteLine("   |  0    ");
+                Console.WriteLine("   |  |/   ");
+                Console.WriteLine("   |       ");
+                Console.WriteLine("___|_______");
+            }
                 else if (X == 3)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("    (XXX)  ");
-                }
+                Console.WriteLine("   ____    ");
+                Console.WriteLine("   |  0    ");
+                Console.WriteLine("   | \\|/   ");
+                Console.WriteLine("   |       ");
+                Console.WriteLine("___|_______");
+            }
                 else if (X == 2)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("    (X X)  ");
-                }
+                Console.WriteLine("   ____    ");
+                Console.WriteLine("   |  0    ");
+                Console.WriteLine("   | \\|/   ");
+                Console.WriteLine("   | /     ");
+                Console.WriteLine("___|_______");
+            }
                 else if (X == 1)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("    (X  )  ");
-                }
+                Console.WriteLine("   ____     ");
+                Console.WriteLine("   |  0     ");
+                Console.WriteLine("   | \\|/    ");
+                Console.WriteLine("   | / \\   ");
+                Console.WriteLine("___|_______ ");
+            }
                 else if (X == 0)
                 {
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("     | |    ");
-                    Console.WriteLine("    (   )  ");
-                }
+                Console.WriteLine("   ____     ");
+                Console.WriteLine("   |        ");
+                Console.WriteLine("   |        ");
+                Console.WriteLine("   | \\|/    ");
+                Console.WriteLine("   | / \\   ");
+                Console.WriteLine("___|______0_");
+            }
             Console.WriteLine($"Number of Guesses Left - {X}\n");
         }
 
@@ -315,12 +300,58 @@ namespace MidtermHangManProject
         {
             foreach (UserPlayer player in file.Users)
             {
-                if (player.Name == userName)
+                if (userName.Equals(player.Name, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine($"Welcome back, {userName}!!\n");
+                    Console.WriteLine($"Welcome back, {player.Name}!!\n");
                     Console.WriteLine($"Your record is {player.Wins} wins and {player.Losses} losses!\n");
                     return;
                 }
+            }
+        }
+
+        public static void InsultGenerator(string word)
+        {
+            //intialize random object
+            Random rnd = new Random();
+
+            //create and intialize variables
+            List<string> lostStatements = new List<string>
+            {
+                "Sorry, your just a loser!",
+                "Garbage!!!!!!!",
+                "Daaaammnnn you suck!!",
+                "LOL U SUCK!",
+                "That was a really good try...... SIKE!",
+                "Gimme my money!",
+                "Your mother should of thrown you away and kept the stork lol!",
+                "Don't feel bad, there are many people who have no talent!",
+                "Brains are not everything. In fact, in your case they're nothing!",
+                "Did your parents ever ask you to run away from home?",
+                "Don't think, it might sprain your brain!"
+            };
+
+            string feedBack = lostStatements[rnd.Next(0, lostStatements.Count)] + $" Your word was \"{word}\".";
+
+            Console.WriteLine(feedBack);
+
+        }
+
+        public static void DisplayHighScores()
+        {
+
+            List<UserPlayer> temp = file.Users.OrderBy(x => x.Wins).ToList();
+            for (int x = temp.Count - 1; x >= 0; x--)
+            {
+                Console.WriteLine($"{temp[x].Name}  {temp[x].Wins}");
+            }
+
+        }
+
+        public static void DisplayListLetters(List<string> list)
+        {
+            foreach (string letter in list)
+            {
+                Console.Write($"{letter} ");
             }
         }
     }
