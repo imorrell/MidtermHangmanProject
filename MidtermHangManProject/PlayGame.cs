@@ -8,7 +8,7 @@ namespace MidtermHangManProject
     class PlayGame
     {
         static FileIO file;
-        static List<string> letterGuessed;
+        static List<string> unguessedLetters;
         //The PlayHangMan method controls all the gameplay for hangman
         public static void PlayHangMan()
         {
@@ -24,7 +24,7 @@ namespace MidtermHangManProject
                 "Your mother should of thrown you away and kept the stork lol!",
                 "Don't feel bad, there are many people who have no talent!",
                 "Brains are not everything. In fact, in your case they're nothing!",
-                "Did your parents ever ask you to run away from home!",
+                "Did your parents ever ask you to run away from home?",
                 "Don't think, it might sprain your brain!"
             };
 
@@ -51,14 +51,8 @@ namespace MidtermHangManProject
                 //Ask the user to enter their name
                 userName = Validator.GetUserInputTwo("Please enter user name\n");
 
-                foreach (UserPlayer player in file.Users)
-                {
-                    if (player.Name == userName)
-                    {
-                        Console.WriteLine($"Welcome back, {userName}!!\n");
-                        Console.WriteLine($"Your record is {player.Wins} wins and {player.Losses} losses!\n");
-                    }
-                }
+                PlayerRecognition(userName);
+
                 inMenu = true;
                 while (inMenu)
                 {
@@ -90,8 +84,6 @@ namespace MidtermHangManProject
 
                                 while (incorrectGuesses != 0 && ConvertStringList(userEntries) != word.ToLower())
                                 {
-                                    //Console.WriteLine(ConvertStringList(userEntries) + " " + word.ToLower());
-
                                     ShowInput(userEntries);
                                     Console.Write("Letters Entered: ");
                                     foreach (string letter in guessedLettersList)
@@ -104,38 +96,34 @@ namespace MidtermHangManProject
                                     enterLetter = Validator.LetterInputOnly("Enter a letter\n").ToLower();
 
                                     //check to see if the letter has already been guessed
-                                    for (int x = 0; x < letterGuessed.Count; x++)
+                                    for (int x = 0; x < unguessedLetters.Count; x++)
                                     {
                                         //check to see if the letter has already been guessed
-                                        if (letterGuessed[x] == enterLetter)
+                                        if (unguessedLetters[x] == enterLetter)
                                         {
-                                            letterGuessed.RemoveAt(x);
+                                            unguessedLetters.RemoveAt(x);
                                             guessedLettersList.Add(enterLetter);
 
                                             for (int i = 0; i < word.Length; i++)
                                             {
-                                                // Console.WriteLine($"\'{word[i]}\'");
-                                                // Console.WriteLine(incorrectGuesses);
                                                 if (enterLetter == word[i].ToString().ToLower())
                                                 {
                                                     //populate underscore from user entries with letter
                                                     letterFound = true;
                                                     userEntries.RemoveAt(i);
                                                     userEntries.Insert(i, enterLetter);
-                                                    // Console.WriteLine(userEntries.ToString());
                                                 }
                                             }
                                             break;
                                         }
 
-                                        if (x == letterGuessed.Count - 1)
+                                        if (x == unguessedLetters.Count - 1)
                                         {
 
                                             letterFound = true;
                                             //this letter has already been guessed, tell the user. 
                                             Console.WriteLine("This letter has already been guessed. Please enter different letter. \n");
 
-<<<<<<< HEAD
                                             incorrectGuesses--;
                                             CharacterArtCountdown(incorrectGuesses);
                                         }
@@ -178,23 +166,6 @@ namespace MidtermHangManProject
                             Console.WriteLine();
                             List<UserPlayer> temp = file.Users.OrderBy(x => x.Wins).ToList();
                             for (int x = temp.Count - 1; x >= 0; x--)
-=======
-                    //check to see if the letter has already been guessed
-                    foreach (String item in letterGuessed)
-                    {
-                        //check to see if the letter has already been guessed
-                        if (item == enterLetter)
-                        {
-                            //this letter has already been guessed, tell the user. 
-                            Console.WriteLine("This letter has already been guessed. Please enter different letter. \n");
-                        }
-                        else
-                        //letter has not been guessed
-                        //check to see if the letter is equivalent to letter or letters in word
-                        for (int i = 0; i < word.Length; i++)
-                        {
-                            if (char.Parse(enterLetter) == word[i])
->>>>>>> a575d6816e789bc0bd8b7de81a5488bb701e38cb
                             {
                                 Console.WriteLine($"{temp[x].Name}  {temp[x].Wins}");
                             }
@@ -224,12 +195,6 @@ namespace MidtermHangManProject
                 }
             }
         }
-
-            //foreach(UserPlayer player in file.Users)
-            //{
-            //    Console.WriteLine($"{player.Name}|{player.Wins}|{player.Losses}");
-            //}
-
             //creating a method to print out a specific sets of CW's based on the number of guesses they have left.
             public static void CharacterArtCountdown(int X)
             {
@@ -239,8 +204,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     |X|    ");
                     Console.WriteLine("     |X|    ");
                     Console.WriteLine("    (XXX)  ");
-                    
-
                 }
                 else if (X == 5)
                 {
@@ -248,8 +211,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     |X|    ");
                     Console.WriteLine("     |X|    ");
                     Console.WriteLine("    (XXX)  ");
-                   
-
                 }
                 else if (X == 4)
                 {
@@ -257,8 +218,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("     |X|    ");
                     Console.WriteLine("    (XXX)  ");
-                    
-
                 }
                 else if (X == 3)
                 {
@@ -266,8 +225,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("    (XXX)  ");
-                   
-
                 }
                 else if (X == 2)
                 {
@@ -275,8 +232,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("    (X X)  ");
-                   
-
                 }
                 else if (X == 1)
                 {
@@ -284,7 +239,6 @@ namespace MidtermHangManProject
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("    (X  )  ");
-                   
                 }
                 else if (X == 0)
                 {
@@ -292,21 +246,9 @@ namespace MidtermHangManProject
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("     | |    ");
                     Console.WriteLine("    (   )  ");
-                   
-
                 }
-
             Console.WriteLine($"Number of Guesses Left - {X}\n");
         }
-        //public static void 
-        //public static void CheckLetter()
-        //{
-        //foreach (char[i] in FileIO.Words(word))
-        //{
-        //if([i] == userGuess)
-        //}
-        //UserPlayer.Guesses--;
-        //}
 
         public static List<string> UserInput(string word)
         {
@@ -322,10 +264,7 @@ namespace MidtermHangManProject
                 words.Add("_ ");
 
             }
-
-
             return words;
-
         }
 
         public static void ShowInput(List<string> words)
@@ -338,12 +277,12 @@ namespace MidtermHangManProject
         }
         public static List<string> WordDifficultySelector()
         {
-           string wordDifficulty = Validator.GetChoiceString("Easy", "Hard", "Would you prefer an Easy word or a Hard Word?\n");
-            if (wordDifficulty.Equals("Easy",StringComparison.OrdinalIgnoreCase))
+           string wordDifficulty = Validator.GetChoiceString("Common", "Uncommon", "Would you prefer a Common word or a Uncommon Word?\n");
+            if (wordDifficulty.Equals("Common",StringComparison.OrdinalIgnoreCase))
             {
                return file.EasyWords;
             }
-            else if (wordDifficulty.Equals("Hard", StringComparison.OrdinalIgnoreCase))
+            else if (wordDifficulty.Equals("Uncommon", StringComparison.OrdinalIgnoreCase))
             {
                 return file.Words;
             }
@@ -351,7 +290,6 @@ namespace MidtermHangManProject
             {
                 return WordDifficultySelector();
             }
-
         }
         public static string ConvertStringList(List<string> list)
         {
@@ -366,13 +304,24 @@ namespace MidtermHangManProject
                 }
                 convertList += list[i];
             }
-
             return convertList;
         }
-
         public static void PopulateGuessList()
         {
-            letterGuessed = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+            unguessedLetters = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
+        }
+
+        public static void PlayerRecognition(string userName)
+        {
+            foreach (UserPlayer player in file.Users)
+            {
+                if (player.Name == userName)
+                {
+                    Console.WriteLine($"Welcome back, {userName}!!\n");
+                    Console.WriteLine($"Your record is {player.Wins} wins and {player.Losses} losses!\n");
+                    return;
+                }
+            }
         }
     }
 }

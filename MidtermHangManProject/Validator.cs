@@ -7,22 +7,6 @@ namespace MidtermHangManProject
 {
     class Validator
     {
-        public static DateTime ValidDate(string message)
-        {
-            try
-            {
-                return DateTime.Parse(GetUserInput(message));
-            }
-            catch
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("This is not a valid date. Try again. \n");
-                Console.ResetColor();
-
-                //use recursion to recall the method
-                return ValidDate(message);
-            }
-        }
 
         public static string LetterInputOnly(string message)
         {
@@ -51,51 +35,6 @@ namespace MidtermHangManProject
                 Console.WriteLine("Wrong input! must contain letters only. \n");
                 return LetterInputOnly(message);
             }
-        }
-
-        public static int ValidateRange(string message, int min, int max)
-        {
-            int number = ParseString(message);
-
-            Console.WriteLine();
-
-            if (number >= min && number < max)
-            {
-                return number;
-            }
-            else
-            {
-                //This student does not exist
-                Console.WriteLine("This choice does not exist.\n");
-                return ValidateRange(message, min, max);
-            }
-        }
-
-        public static int ParseString(string message)
-        {
-            try
-            {
-                string input = GetUserInput(message);
-                int number = int.Parse(input);
-                return number;
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Bad input. We need a number \n");
-                return ParseString(message);
-            }
-
-        }
-
-        public static string GetUserInput(string message)
-        {
-            string input;
-
-            Console.WriteLine(message);
-
-            input = Console.ReadLine();
-
-            return input;
         }
 
         public static bool GetContinue()
@@ -136,90 +75,7 @@ namespace MidtermHangManProject
             }
 
             return result;
-        }
-
-
-        /*
-            * Get double within range method checks to see if the user enters a double
-            * and also checks to see if the double is within the given range given by
-            * the user
-            */
-        public static double GetDoubleWithinRange(double min, double max)
-        {
-            //Create variable that will return the users input if it is true
-            double numberValue = 0.0;
-
-            //Use boolean to control while loop
-            bool isValid = false;
-
-            //While loop
-            while (isValid == false)
-            {
-                //propmt the user to enter 
-
-                numberValue = double.Parse(Console.ReadLine());
-
-                //use if else loop to check for the number value to see if its in 
-                //correct range
-                if (numberValue <= min)
-                {
-                    Console.WriteLine("Error! Number must be greate than " + min + ".");
-
-                }
-                else if (numberValue >= max)
-                {
-                    Console.WriteLine("Error! Number must be less than " + max + ".");
-                }
-                else
-                {
-                    isValid = true;
-                }
-            }
-            return numberValue;
-
-        }
-
-        /*
-         * Get int within range method checks to see if the user enters a int value
-         * and also checks to see if the double is within the given range given by
-         * the user
-         */
-
-        public static int GetIntWithinRange(int min, int max)
-        {
-            //Create variable that will return the users input if it is true
-            int numberValue = 0;
-
-            //Use boolean to control while loop
-            bool isValid = false;
-
-            //While loop
-            while (isValid == false)
-            {
-
-                //Propmt user to enter a integer
-                Console.WriteLine("Please enter a integer");
-
-                numberValue = int.Parse(Console.ReadLine());
-
-                //use if else loop to check for the number value to see if its in 
-                //correct range
-                if (numberValue <= min)
-                {
-                    Console.WriteLine("Error! Number must be greate than " + min + ".");
-
-                }
-                else if (numberValue >= max)
-                {
-                    Console.WriteLine("Error! Number must be less than " + max + ".");
-                }
-                else
-                {
-                    isValid = true;
-                }
-            }
-            return numberValue;
-        }
+        }        
 
         public static string GetChoiceString(string s1, string s2, string message)
         {
@@ -255,33 +111,7 @@ namespace MidtermHangManProject
             }
             return choice;
         }
-        public static String GetRequiredString()
-        {
-            String choiceString = "";
-
-            //Use boolean to control while loop
-            bool isValid = false;
-
-            //While loop
-            while (isValid == false)
-            {
-                //Print out prompt message
-                Console.WriteLine("Please enter a string");
-                choiceString = Console.ReadLine();
-
-                if (choiceString.Equals(""))
-                {
-                    Console.WriteLine("Not a String!!! Please try again");
-
-                }
-                else
-                {
-                    isValid = true;
-                }
-            }
-            return choiceString;
-        }
-
+        
         public static string GetUserInputTwo(string message)
         {
             string input;
@@ -309,8 +139,6 @@ namespace MidtermHangManProject
             }
 
         }
-
-
     }
 
 }
